@@ -2,8 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://dcuxwhjsq4raf" path="res://assets/cactus.png" id="1_vpwf0"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jwvv2"]
-size = Vector2(68, 92)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e00p4"]
+radius = 32.0
+height = 90.0
 
 [node name="Cactus" type="Area2D" groups=["obstacles"]]
 metadata/_edit_group_ = true
@@ -13,4 +14,4 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_vpwf0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_jwvv2")
+shape = SubResource("CapsuleShape2D_e00p4")

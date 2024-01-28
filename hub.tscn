@@ -10,9 +10,11 @@ font_color = Color(0.647059, 0.341176, 0.619608, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_v5vf5"]
 font = ExtResource("1_4jl1w")
+font_size = 30
 
 [sub_resource type="LabelSettings" id="LabelSettings_n1kir"]
 font = ExtResource("1_4jl1w")
+font_size = 30
 
 [node name="HUB" type="CanvasLayer"]
 script = ExtResource("1_x3ag8")
@@ -69,6 +71,7 @@ offset_right = 49.0
 offset_bottom = -18.0
 grow_horizontal = 2
 grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_4jl1w")
 text = "Start Game"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://dg6eem66p0u56"]
+
+[ext_resource type="Texture2D" uid="uid://dvdsjujwflkqx" path="res://assets/grass.png" id="1_ldi0h"]
+[ext_resource type="Script" path="res://main.gd" id="1_vqerd"]
+[ext_resource type="PackedScene" uid="uid://i6u0wov01ufv" path="res://player.tscn" id="2_4c03n"]
+[ext_resource type="PackedScene" uid="uid://dtgixtedpao75" path="res://coin.tscn" id="2_bhk8t"]
+[ext_resource type="PackedScene" uid="uid://6o6g7lsvpnx2" path="res://hub.tscn" id="5_4to1b"]
+[ext_resource type="AudioStream" uid="uid://blpm0ikjeqb1t" path="res://assets/audio/Coin.wav" id="6_xyesn"]
+[ext_resource type="AudioStream" uid="uid://barfabqaaihah" path="res://assets/audio/Level.wav" id="7_0fchn"]
+[ext_resource type="AudioStream" uid="uid://caeblvf2arwk3" path="res://assets/audio/EndSound.wav" id="8_7ykqx"]
+[ext_resource type="AudioStream" uid="uid://brnty0owcpnrc" path="res://assets/audio/Powerup.wav" id="9_5mdev"]
+[ext_resource type="PackedScene" uid="uid://dl82pmyn8hi5x" path="res://cactus.tscn" id="10_klmyb"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_vqerd")
+coin_scene = ExtResource("2_bhk8t")
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 509.0
+offset_bottom = 770.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_ldi0h")
+expand_mode = 4
+stretch_mode = 1
+
+[node name="Player" parent="." instance=ExtResource("2_4c03n")]
+
+[node name="GameTimer" type="Timer" parent="."]
+
+[node name="HUB" parent="." instance=ExtResource("5_4to1b")]
+
+[node name="CoinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_xyesn")
+
+[node name="LevelSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0fchn")
+
+[node name="EndSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_7ykqx")
+
+[node name="PowerupSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_5mdev")
+
+[node name="Cactus" parent="." instance=ExtResource("10_klmyb")]
+position = Vector2(205.522, 171)
+
+[node name="Cactus2" parent="." instance=ExtResource("10_klmyb")]
+position = Vector2(347, 519)
+
+[connection signal="hurt" from="Player" to="." method="_on_player_hurt"]
+[connection signal="pickup" from="Player" to="." method="_on_player_pickup"]
+[connection signal="timeout" from="GameTimer" to="." method="_on_game_timer_timeout"]
+[connection signal="start_game" from="HUB" to="." method="_on_hub_start_game"]
